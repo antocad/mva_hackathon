@@ -1,0 +1,100 @@
+# ==============================================================================
+# Git Ignore - MVA Hackathon 2026
+# ==============================================================================
+
+hackathon_overview.txt
+*.webp
+track1/global/*.csv
+track1/targeted/*.csv
+
+# --- Raw Data and Sequencing Directories ---
+data/
+data/**
+
+# --- VEP Cache, Plugins, and Large Databases ---
+vep/
+vep/**
+homo_sapiens/
+Plugins/
+*.tar.gz
+*.tar
+*.tgz
+*.zip
+*.7z
+
+# --- Large Genomic Data Formats ---
+# Fastq / Raw reads
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Alignments (SAM / BAM / CRAM)
+*.bam
+*.bam.bai
+*.bai
+*.cram
+*.cram.crai
+*.crai
+*.sam
+
+# Variants & Large Annotations
+*.vcf
+*.vcf.gz
+*.vcf.gz.tbi
+*.tbi
+*.csi
+
+# Genomic References & Annotations (unless specifically whitelisted)
+*.gtf
+*.gtf.gz
+*.gff
+*.gff3
+*.fasta
+*.fa
+*.fasta.fai
+*.fai
+
+# --- Intermediate Pipeline Output (Heavy / Raw TSVs / Logs) ---
+*.tsv
+step2_VEP_output.txt
+*.log
+*.tmp
+*.temp
+*.out
+
+# --- Docker & Container Images ---
+*.sif
+*.simg
+*.img
+*.docker
+
+# --- Python Environment & Bytecode ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+.env
+.venv
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# --- IDE & OS metadata ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==============================================================================
+# Whitelist / Keep tracked files
+# ==============================================================================
+!step1_genes_bedfile.bed
+!hackathon_overview.txt
+!submissions_rules.txt
+!methods_description_form.csv
+hackathon_overview.txt

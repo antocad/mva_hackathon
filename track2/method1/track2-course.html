@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stop-Codon Readthrough Therapy — Full Course (BUB1B Case)</title>
+<style>
+  :root {
+    --ink: #1f2430;
+    --muted: #5b6472;
+    --paper: #fbfaf7;
+    --card: #ffffff;
+    --line: #e3e1da;
+    --accent: #2f6f5e;
+    --accent-soft: #e6f2ee;
+    --dna: #3d6b9c;
+    --rna: #b5563c;
+    --protein: #6a4c93;
+    --stop: #c0392b;
+    --fix: #2f6f5e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 840px; margin: 0 auto; padding: 48px 24px 100px; }
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle { color: var(--muted); font-size: 1.05rem; margin: 0 0 40px; }
+  h2 {
+    font-size: 1.35rem;
+    margin: 56px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 { font-size: 1.05rem; margin: 28px 0 8px; color: var(--accent); }
+  p { margin: 0 0 14px; }
+  .lede {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 4px;
+    font-size: 0.97rem;
+    color: #2a3b34;
+    margin-bottom: 8px;
+  }
+  .figure {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 18px 10px;
+    margin: 22px 0 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+    margin: 10px 2px 4px;
+  }
+  .term {
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .callout {
+    background: #fff6ea;
+    border: 1px solid #eddcb8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 0.95rem;
+  }
+  .callout.warn { background: #fdf0ee; border-color: #f0c4bd; }
+  .callout .label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 8px;
+    font-size: 0.92rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  code { background: #eee9e0; padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+  .part-tag {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Stop-Codon Readthrough Therapy</h1>
+  <p class="subtitle">A full course for the BUB1B case — from plain-language basics to the level of detail you'd want in the Track 2 writeup.</p>
+
+  <!-- ============ PART 1 ============ -->
+  <div class="part-tag">Part 1</div>
+  <h2>The Basics, in Plain Language</h2>
+
+  <p>Your DNA is an instruction manual, but it never leaves the nucleus of the cell. To build something from those instructions, the cell first makes a working copy of one gene at a time — that copy is called <span class="term">mRNA</span>. The mRNA copy then travels to a molecular machine called a <span class="term">ribosome</span>, which reads it and builds a protein from it.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#8a8f98"/>
+        </marker>
+      </defs>
+      <!-- DNA -->
+      <g>
+        <rect x="20" y="60" width="150" height="80" rx="12" fill="#eaf1f8" stroke="var(--dna)" stroke-width="2"/>
+        <text x="95" y="95" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="var(--dna)" font-weight="bold">DNA</text>
+        <text x="95" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">the instruction</text>
+        <text x="95" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">manual (nucleus)</text>
+      </g>
+      <line x1="175" y1="100" x2="255" y2="100" stroke="#8a8f98" stroke-width="2" marker-end="url(#arrow1)"/>
+      <text x="215" y="88" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#8a8f98">transcription</text>
+      <!-- RNA -->
+      <g>
+        <rect x="260" y="60" width="150" height="80" rx="12" fill="#f8ece7" stroke="var(--rna)" stroke-width="2"/>
+        <text x="335" y="95" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="var(--rna)" font-weight="bold">mRNA</text>
+        <text x="335" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">the working copy</text>
+        <text x="335" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">(leaves nucleus)</text>
+      </g>
+      <line x1="415" y1="100" x2="495" y2="100" stroke="#8a8f98" stroke-width="2" marker-end="url(#arrow1)"/>
+      <text x="455" y="88" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#8a8f98">translation</text>
+      <!-- Ribosome -->
+      <g>
+        <rect x="500" y="60" width="130" height="80" rx="12" fill="#f1eef5" stroke="#8a8f98" stroke-width="2"/>
+        <text x="565" y="95" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#5b6472" font-weight="bold">Ribosome</text>
+        <text x="565" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">reads mRNA,</text>
+        <text x="565" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">codon by codon</text>
+      </g>
+      <line x1="630" y1="100" x2="700" y2="100" stroke="#8a8f98" stroke-width="2" marker-end="url(#arrow1)"/>
+      <!-- Protein -->
+      <g>
+        <circle cx="715" cy="70" r="9" fill="var(--protein)"/>
+        <circle cx="730" cy="85" r="9" fill="var(--protein)"/>
+        <circle cx="715" cy="100" r="9" fill="var(--protein)"/>
+        <circle cx="730" cy="115" r="9" fill="var(--protein)"/>
+        <circle cx="715" cy="130" r="9" fill="var(--protein)"/>
+        <text x="722" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a5568">protein</text>
+      </g>
+    </svg>
+    <div class="caption">DNA → mRNA → ribosome → protein. This is the basic flow every step of this course sits on top of.</div>
+  </div>
+
+  <div class="figure">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Central_dogma_of_molecular_biology.svg" alt="Central dogma of molecular biology: DNA to RNA to protein" style="max-height:320px;margin:0 auto;display:block;">
+    <div class="caption">Source: Wikimedia Commons, "Central dogma of molecular biology.svg" (CC BY-SA 3.0).</div>
+  </div>
+
+  <h3>What a ribosome actually does</h3>
+  <p>Think of the ribosome as a construction worker reading instructions three letters at a time. Each group of three letters — a <span class="term">codon</span> — tells it exactly which building block to add next. The building blocks are <span class="term">amino acids</span>, and a chain of them strung together — before it's finished and folded into its working 3D shape — is called a <span class="term">polypeptide</span>. "Polypeptide" just means "a protein under construction." Once it's fully built and folded, we usually just call it "the protein."</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg">
+      <!-- mRNA strand -->
+      <rect x="20" y="100" width="720" height="26" rx="4" fill="#f8ece7" stroke="var(--rna)" stroke-width="1.5"/>
+      <g font-family="sans-serif" font-size="12" fill="#7a3a28" font-weight="600">
+        <text x="55" y="118" text-anchor="middle">AUG</text>
+        <text x="115" y="118" text-anchor="middle">GCU</text>
+        <text x="175" y="118" text-anchor="middle">CAC</text>
+        <text x="235" y="118" text-anchor="middle">UUG</text>
+        <text x="295" y="118" text-anchor="middle">AAC</text>
+        <text x="355" y="118" text-anchor="middle">GGU</text>
+        <text x="415" y="118" text-anchor="middle" fill="var(--stop)">UAA</text>
+        <text x="475" y="118" text-anchor="middle" fill="#b7b0a3">...</text>
+      </g>
+      <line x1="50" y1="100" x2="50" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <line x1="110" y1="100" x2="110" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <line x1="170" y1="100" x2="170" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <line x1="230" y1="100" x2="230" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <line x1="290" y1="100" x2="290" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <line x1="350" y1="100" x2="350" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <line x1="410" y1="100" x2="410" y2="126" stroke="var(--rna)" stroke-width="0.5"/>
+      <!-- ribosome moving along -->
+      <ellipse cx="235" cy="70" rx="55" ry="30" fill="#f1eef5" stroke="#8a8f98" stroke-width="2"/>
+      <text x="235" y="66" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#5b6472">RIBOSOME</text>
+      <text x="235" y="80" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8a8f98">reading here →</text>
+      <!-- growing polypeptide -->
+      <circle cx="150" cy="30" r="8" fill="var(--protein)"/>
+      <circle cx="167" cy="20" r="8" fill="var(--protein)"/>
+      <circle cx="184" cy="30" r="8" fill="var(--protein)"/>
+      <text x="167" y="10" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">growing polypeptide chain</text>
+    </svg>
+    <div class="caption">The ribosome moves along the mRNA one codon at a time, adding one amino acid per codon, until it reaches a stop codon (shown in red).</div>
+  </div>
+
+  <div class="figure">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ribosome_mRNA_translation_en.svg" alt="Diagram of a ribosome translating mRNA into a protein chain" style="max-height:340px;margin:0 auto;display:block;">
+    <div class="caption">Source: Wikimedia Commons, "Ribosome mRNA translation en.svg" by LadyofHats (public domain).</div>
+  </div>
+
+  <h3>The stop codon, and what "stop_gained" breaks</h3>
+  <p>Every gene has a designated codon near the very end that means "stop building — you're done." A <span class="term">stop_gained</span> mutation — the type of variant found in this case — is a DNA typo that accidentally creates one of these "stop" signals somewhere in the <em>middle</em> of the gene, far too early. The ribosome obeys it anyway; it has no way to know the signal is a mistake. The result is a short, broken fragment instead of the full protein.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+      <text x="20" y="30" font-family="sans-serif" font-size="12" font-weight="700" fill="var(--muted)">NORMAL GENE</text>
+      <rect x="20" y="40" width="560" height="26" rx="4" fill="#e9f3ee" stroke="var(--fix)" stroke-width="1.5"/>
+      <rect x="580" y="40" width="60" height="26" rx="4" fill="#fbeceb" stroke="var(--stop)" stroke-width="1.5"/>
+      <text x="610" y="58" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--stop)" font-weight="700">STOP</text>
+      <text x="300" y="58" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2a5a48">full-length coding sequence</text>
+      <path d="M20 76 L640 76" stroke="#c9c4b8" stroke-dasharray="2,3"/>
+      <text x="330" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">→ full, working protein produced</text>
+
+      <text x="20" y="130" font-family="sans-serif" font-size="12" font-weight="700" fill="var(--muted)">GENE WITH STOP_GAINED VARIANT</text>
+      <rect x="20" y="140" width="230" height="26" rx="4" fill="#e9f3ee" stroke="var(--fix)" stroke-width="1.5"/>
+      <rect x="250" y="140" width="60" height="26" rx="4" fill="#fbeceb" stroke="var(--stop)" stroke-width="1.5"/>
+      <text x="280" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--stop)" font-weight="700">STOP</text>
+      <rect x="312" y="140" width="328" height="26" rx="4" fill="#f2f1ed" stroke="#c9c4b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="476" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#a39d8f">rest of gene never gets translated</text>
+      <text x="130" y="196" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">→ short, broken protein fragment — like a book cut off on page 3 of 300</text>
+    </svg>
+    <div class="caption">A stop_gained mutation inserts a premature "STOP" signal partway through the gene, truncating the protein.</div>
+  </div>
+
+  <div class="figure">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Amino_Acid_Codon_Table.svg" alt="Full codon table showing which triplets code for each amino acid, and which three are stop codons" style="max-height:420px;margin:0 auto;display:block;">
+    <div class="caption">Source: Wikimedia Commons, "Amino Acid Codon Table.svg" (CC BY-SA 4.0). UAA, UAG, and UGA are the three stop codons — the ones a stop_gained mutation creates in the wrong place.</div>
+  </div>
+
+  <h3>NMD (nonsense-mediated decay) — the cell's quality control</h3>
+  <p>The cell doesn't just tolerate broken instructions sitting around. A built-in proofreading system called <span class="term">NMD</span> scans mRNA copies for stop signals appearing in the wrong place. When it finds one, it usually destroys that mRNA copy entirely — before it can even be used by a ribosome many times over. So the real-world effect of a stop_gained mutation usually isn't "a slightly short protein floating around." It's closer to: <em>that copy of the instructions gets shredded before it's used, so almost no protein comes from that gene copy at all.</em></p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="55" width="230" height="26" rx="4" fill="#e9f3ee" stroke="var(--fix)" stroke-width="1.5"/>
+      <rect x="260" y="55" width="55" height="26" rx="4" fill="#fbeceb" stroke="var(--stop)" stroke-width="1.5"/>
+      <text x="287" y="73" text-anchor="middle" font-family="sans-serif" font-size="9" fill="var(--stop)" font-weight="700">STOP</text>
+      <rect x="315" y="55" width="300" height="26" rx="4" fill="#f2f1ed" stroke="#c9c4b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="150" y="45" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--muted)">faulty mRNA (premature stop detected)</text>
+
+      <g transform="translate(660,68)">
+        <circle r="26" fill="#fdf0ee" stroke="var(--stop)" stroke-width="2"/>
+        <text y="5" text-anchor="middle" font-family="sans-serif" font-size="18" fill="var(--stop)">✕</text>
+      </g>
+      <line x1="620" y1="68" x2="628" y2="68" stroke="var(--stop)" stroke-width="2"/>
+      <text x="660" y="112" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">NMD flags &amp;</text>
+      <text x="660" y="124" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">degrades it</text>
+
+      <text x="150" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">Most copies never even reach the ribosome to be translated</text>
+    </svg>
+    <div class="caption">NMD is quality control at the mRNA level — it destroys transcripts with premature stop codons before they're used.</div>
+  </div>
+
+  <h3>Two databases worth demystifying</h3>
+  <p><span class="term">ClinVar</span> is a public, shared notebook where laboratories report "we found this exact DNA variant in a patient, and here's whether we believe it causes disease." If a variant is logged as "pathogenic," someone has seen this exact typo before and already built a case that it's harmful.</p>
+  <p><span class="term">gnomAD</span> is a database recording how common each variant is across roughly 800,000 sequenced people. If a variant shows up in a large fraction of ordinary, healthy people, it's almost certainly harmless — a disease this rare cannot be explained by a change that 1 in 20 people casually carry without being sick.</p>
+
+  <h3>The drug idea, in one sentence</h3>
+  <p><span class="term">Ataluren</span> is a pill that makes the ribosome slightly "sloppy" right at one specific broken stop signal — just enough that it occasionally skips past it, inserts <em>some</em> amino acid instead of stopping, and keeps building all the way to the real, correct stop point at the true end of the protein. It doesn't touch the DNA — it nudges the reading machine to push through the fake stop sign some fraction of the time.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg">
+      <text x="20" y="26" font-family="sans-serif" font-size="12" font-weight="700" fill="var(--muted)">WITHOUT DRUG</text>
+      <rect x="20" y="36" width="230" height="24" rx="4" fill="#e9f3ee" stroke="var(--fix)" stroke-width="1.5"/>
+      <rect x="250" y="36" width="55" height="24" rx="4" fill="#fbeceb" stroke="var(--stop)" stroke-width="1.5"/>
+      <text x="277" y="53" text-anchor="middle" font-family="sans-serif" font-size="9" fill="var(--stop)" font-weight="700">STOP</text>
+      <text x="330" y="53" font-family="sans-serif" font-size="11" fill="var(--muted)">→ ribosome halts here → short, broken fragment</text>
+
+      <text x="20" y="100" font-family="sans-serif" font-size="12" font-weight="700" fill="var(--muted)">WITH ATALUREN</text>
+      <rect x="20" y="110" width="230" height="24" rx="4" fill="#e9f3ee" stroke="var(--fix)" stroke-width="1.5"/>
+      <rect x="250" y="110" width="55" height="24" rx="4" fill="#fdf5e0" stroke="#caa53a" stroke-width="1.5"/>
+      <text x="277" y="127" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#8a6d1e" font-weight="700">STOP</text>
+      <text x="277" y="99" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8a6d1e">slips through</text>
+      <rect x="312" y="110" width="328" height="24" rx="4" fill="#e9f3ee" stroke="var(--fix)" stroke-width="1.5" stroke-dasharray="1,0"/>
+      <text x="476" y="127" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#2a5a48">translation continues to the real stop codon</text>
+      <text x="330" y="160" font-family="sans-serif" font-size="11" fill="var(--muted)">→ some fraction of the time, a full-length protein is produced</text>
+    </svg>
+    <div class="caption">Ataluren lowers ribosome fidelity at the mistaken stop codon, letting translation continue through to the true end of the gene some of the time.</div>
+  </div>
+
+  <div class="figure">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/PTC_124.svg" alt="Chemical structure of ataluren (PTC124)" style="max-height:180px;margin:0 auto;display:block;">
+    <div class="caption">Ataluren (PTC124), C₁₅H₉FN₂O₃. Source: Wikimedia Commons, "PTC 124.svg".</div>
+  </div>
+
+  <!-- ============ PART 2 ============ -->
+  <div class="part-tag">Part 2</div>
+  <h2>The Deeper Mechanism (for the writeup)</h2>
+
+  <h3>2.1 What "stop_gained" does at the ribosome, precisely</h3>
+  <p>Translation is terminated by two proteins, <strong>eRF1</strong> and <strong>eRF3</strong>, which recognize a stop codon sitting in the ribosome's "A site" and trigger release of the polypeptide being built. When a stop_gained mutation creates an abnormally early stop codon, NMD typically recognizes it — the general rule of thumb is a stop codon located more than ~50 nucleotides before the last exon–exon junction — and marks that transcript for degradation. Net effect: not "a slightly shorter working protein," but usually "little or no protein at all," because the mRNA is cleared before repeated translation, and whatever truncated fragment is made is typically non-functional and often degraded further.</p>
+
+  <div class="callout">
+    <span class="label">This case</span>
+    The variant <code>15:40209701 T&gt;G</code> is stop-gained, already ClinVar pathogenic/likely pathogenic for BUB1B-related MVA — a strong loss-of-function allele, not a partial-function one.
+  </div>
+
+  <h3>2.2 The therapeutic idea: ribosomal misreading</h3>
+  <p>A stop codon is, chemically, just a normal-length codon that happens to have no matching tRNA (the molecule that delivers amino acids) — so instead of an amino acid being added, eRF1/eRF3 step in and terminate. Readthrough drugs lower the ribosome's fidelity at that moment, allowing a <strong>near-cognate tRNA</strong> (one that almost, but not perfectly, matches the stop codon) to be inserted instead of triggering termination. The ribosome "reads through" the mistaken stop signal, inserts some amino acid, and continues to the gene's real stop codon.</p>
+
+  <ul>
+    <li><strong>The rescued protein isn't identical to wild-type</strong> — one amino acid near the mutation site differs from the original. Whether the protein still works depends on how tolerant that exact position is to substitution (the same kind of reasoning SIFT/PolyPhen apply to missense variants, just applied here to the readthrough substitution).</li>
+    <li><strong>Readthrough is never 100% efficient.</strong> Some fraction of translation events succeed; the rest still terminate early. This is a <em>partial rescue</em> therapy.</li>
+    <li><strong>Not all stop codons are equally "leaky."</strong> UGA is empirically easiest for near-cognate tRNAs to misread, UAG is intermediate, UAA is hardest. Worth confirming which stop codon <code>T&gt;G</code> creates here.</li>
+    <li><strong>Sequence context around the stop codon matters too</strong> (particularly the nucleotide immediately after it), independent of which stop codon it is.</li>
+  </ul>
+
+  <h3>2.3 Ataluren specifically</h3>
+  <ul>
+    <li><strong>Approved status:</strong> Ataluren (Translarna, originally PTC124) is approved in the EU/EEA and other jurisdictions for nonsense-mutation Duchenne muscular dystrophy (patients ≥2 years). A cystic fibrosis Phase III trial was discontinued for lack of significant benefit — a real, imperfect, context-dependent drug, not a universal fix.</li>
+    <li><strong>Mechanism, precisely:</strong> an orally bioavailable small molecule (an oxadiazole) that promotes readthrough specifically at premature stop codons while largely preserving correct termination at normal, full-length stop codons.</li>
+    <li><strong>Track record beyond DMD:</strong> tested with varying success in cystic fibrosis, some lysosomal storage diseases (e.g. Hurler syndrome/MPS I-H), aniridia, and case reports in other single-gene conditions — a "class of precedent" argument, not proof it will work for BUB1B.</li>
+  </ul>
+
+  <!-- ============ PART 3 ============ -->
+  <div class="part-tag">Part 3</div>
+  <h2>Applying This to the BUB1B Finding</h2>
+
+  <ol>
+    <li><strong>Where does the truncation fall relative to functional domains?</strong> BUB1B/BUBR1 has an N-terminal kinetochore-binding region, a central GLEBS domain (binds BUB3, essential for checkpoint signaling), and a C-terminal pseudokinase domain. If position 40,209,701 truncates the protein before domains required for checkpoint function, restoring full-length translation matters a great deal — worth mapping against the MANE Select transcript coordinates from Track 1.</li>
+    <li><strong>Does this allele get targeted by NMD, or partly escape it?</strong> Readthrough drugs act on transcripts that reach the ribosome — if the mRNA is destroyed first, there's nothing to rescue.</li>
+    <li><strong>Which stop codon does <code>T&gt;G</code> create, and what's the surrounding sequence?</strong> Determines expected baseline readthrough efficiency before any drug is applied.</li>
+    <li><strong>The compound-het partner is a genuinely favorable feature.</strong> The second BUB1B allele carries a missense variant, not a second nonsense mutation — readthrough therapy would only need to rescue one allele to potentially restore meaningful checkpoint function.</li>
+  </ol>
+
+  <div class="callout">
+    <span class="label">Claim to make</span>
+    "Ataluren represents a mechanistically plausible, already-approved candidate for partial restoration of BUB1B function, specifically because the causal variant is a premature stop codon — the exact mutation class this drug class was designed for — and because only one of the two alleles needs partial rescue given the compound-heterozygous genotype."
+  </div>
+
+  <div class="callout warn">
+    <span class="label">Claim to avoid</span>
+    "Ataluren will treat this child's MVA." There's no efficacy data yet for this gene, this variant, or this specific stop codon identity — stating that plainly is a rigor point in your favor, not a weakness.
+  </div>
+
+  <p><strong>Concrete next step to name</strong> (even without time to execute it): an in vitro minigene readthrough reporter assay — clone the genomic region spanning the mutation into a reporter construct, treat cells with ataluren, and measure whether full-length protein reappears by western blot. This is the standard first validation step used across the literature before any clinical extrapolation.</p>
+
+  <!-- ============ GLOSSARY ============ -->
+  <h2>Quick Glossary</h2>
+  <table>
+    <tr><th>Term</th><th>Plain-language meaning</th></tr>
+    <tr><td>Polypeptide</td><td>A chain of amino acids — a protein while it's being built or before it folds into its working shape</td></tr>
+    <tr><td>Ribosome</td><td>The molecular machine that reads mRNA and builds proteins from it</td></tr>
+    <tr><td>Codon</td><td>A group of three DNA/RNA letters that specifies one amino acid (or "stop")</td></tr>
+    <tr><td>Stop codon</td><td>The codon that tells the ribosome "the protein is finished, release it"</td></tr>
+    <tr><td>Stop_gained</td><td>A mutation that creates a stop codon in the wrong (too-early) place</td></tr>
+    <tr><td>NMD (nonsense-mediated decay)</td><td>The cell's quality-control system that destroys mRNA copies with abnormally early stop codons</td></tr>
+    <tr><td>tRNA</td><td>The molecule that delivers a specific amino acid to the ribosome during translation</td></tr>
+    <tr><td>Near-cognate tRNA</td><td>A tRNA that almost, but not perfectly, matches a given codon — the basis of "misreading" a stop codon</td></tr>
+    <tr><td>ClinVar</td><td>A public database of variants and whether labs believe they cause disease</td></tr>
+    <tr><td>gnomAD</td><td>A public database of how common each genetic variant is across ~800,000 sequenced people</td></tr>
+    <tr><td>Readthrough therapy</td><td>A drug strategy that makes the ribosome occasionally skip past a premature stop codon and keep building the protein</td></tr>
+  </table>
+
+</div>
+</body>
+</html>
