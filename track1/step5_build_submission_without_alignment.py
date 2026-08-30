@@ -34,7 +34,7 @@ STEP4_FILES = {
     "global":   "/home/molcure/storageB/antoine/mva_hackathon/track1/global/step4_merged.csv",
 }
 
-PROBAND_ID = "WGS_EX2312012"   # from the hackathon dataset docs `bcftools query -l /home/molcure/storageB/antoine/mva_hackathon/data/vcf/WGS_EX2312012_HGWCNDSX7.vcf.gz`
+PROBAND_ID = "PROBAND01"   # from the hackathon dataset docs `bcftools query -l /home/molcure/storageB/antoine/mva_hackathon/data/vcf/WGS_EX2312012_HGWCNDSX7.vcf.gz`
 
 USERNAME = "antocad3"
 APPROACH_NAME = "ensemble_without_alignment"
