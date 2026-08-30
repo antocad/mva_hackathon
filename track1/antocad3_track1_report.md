@@ -4,7 +4,7 @@
 **Track:** Track 1 — Variant Prediction (Causal Variant Identification)  
 **Submission File:** `antocad3_ensemble_without_alignment.csv`  
 **Model Name:** `ensemble_without_alignment` (Model 1 of 1)  
-**Proband ID:** `WGS_EX2312012`  
+**Proband ID:** `PROBAND01`
 **Reference Genome Build:** GRCh38 / hg38  
 
 ---
@@ -83,17 +83,18 @@ flowchart LR
      1 & \text{Missense variant (amino acid substitution)} 
      \end{cases}$$
    * **Disease-Weighted Phenotype Score ($S_{\text{pheno}}$):**
-     $$\text{Phenotype Score} = \sum_{k \in \text{Matches}} W_k, \quad W_k = \begin{cases} 
-     2.5 & \text{Recurrent Miscarriages (HP:0200067) — Primary Heritable Lethality Signal} \\ 
+     $$\text{Phenotype Score} = \sum_{k \in \text{Matches}} W_k$$
+     $$W_k = \begin{cases} 
+     2.5 & \text{Recurrent Miscarriages (HP:0200067) — Primary Lethality} \\ 
      2.0 & \text{Rhabdomyosarcoma (HP:0002859) — Primary Oncologic Trigger} \\ 
-     1.5 & \text{Premature Birth (HP:0001622) \& Severe IUGR / SGA (HP:0001518)} \\ 
-     1.5 & \text{Chromosomal Instability / Aneuploidy Syndromes (Mechanistic Overlap)} \\ 
-     1.0 & \text{Nephrocalcinosis (HP:0000121) — Congenital Renal Manifestation} \\ 
-     1.0 & \text{Short Stature (HP:0004322), Failure to Thrive (HP:0001508), Muscle Atrophy (HP:0003202)} 
+     1.5 & \text{Premature Birth (HP:0001622) \& Severe IUGR (HP:0001518)} \\ 
+     1.5 & \text{Chromosomal Instability / Aneuploidy Syndromes} \\ 
+     1.0 & \text{Nephrocalcinosis (HP:0000121) — Congenital Renal Feature} \\ 
+     1.0 & \text{Short Stature, Failure to Thrive, Muscle Atrophy} 
      \end{cases}$$
    * **Composite Priority Score Formula:**
-     $$\text{Priority Score} = 100 \cdot \mathbb{I}_{\text{ClinVar Pathogenic}} + 15 \cdot \mathbb{I}_{\text{SIFT/PolyPhen Damaging}} + 10 \cdot S_{\text{pheno}} + 10 \cdot S_{\text{consequence}} + 5 \cdot (1 - \text{AF}_{\max})$$
-     * *ClinVar Matching:* Tokenized exact parsing splitting on `[,&/]` matching `{"pathogenic", "likely_pathogenic"}` strictly (discarding false matches on *conflicting interpretations*).
+     $$\text{Priority Score} = 100 \cdot \mathbb{I}_{\text{ClinVar Path}} + 15 \cdot \mathbb{I}_{\text{SIFT/PolyPhen}} + 10 \cdot S_{\text{pheno}} + 10 \cdot S_{\text{consequence}} + 5 \cdot (1 - \text{AF}_{\max})$$
+     * *ClinVar Matching:* Strict tokenized parsing splitting on `[,&/]` matching {"pathogenic", "likely_pathogenic"} (filtering out conflicting interpretations).
      * *Uniqueness Term $5 \times (1 - \text{AF}_{\max})$:* Continuous tie-breaker prioritizing private/novel mutations ($\text{AF} = 0.0 \implies +5.0$) over common background alleles.
 4. **Genotype Quality Control:** Re-integrated GATK call metrics, requiring `FILTER == PASS`, total depth `DP >= 10`, alternate allele depth `AD_alt >= 1`, and non-reference genotype (`GT != 0/0`).
 5. **Recessive Pairing Engine & EPCR Calibration:**

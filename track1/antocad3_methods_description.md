@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-This document provides a comprehensive, reproducible technical specification of our automated, two-tier computational genomics pipeline for identifying causal genetic variants underlying Mosaic Variegated Aneuploidy (MVA) in proband `WGS_EX2312012`.
+This document provides a comprehensive, reproducible technical specification of our automated, two-tier computational genomics pipeline for identifying causal genetic variants underlying Mosaic Variegated Aneuploidy (MVA) in proband `PROBAND01`.
 
 By combining a **targeted hypothesis-driven candidate panel** (covering OMIM-established MVA genes MVA1–MVA7) with an **unbiased genome-wide genic scan** (>20,000 gene bodies) followed by a **recessive inheritance pairing engine**, our pipeline pinpointed a **compound heterozygous mutation in the *BUB1B* gene** as the top causal candidate (**EPCR = 1.0**).
 
@@ -94,7 +94,7 @@ flowchart TD
     classDef genetic fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,rx:12,ry:12;
     classDef organ fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#6b21a8,rx:12,ry:12;
 
-    Proband(["🧬 <b>Proband Clinical Constellation</b><br/>(WGS_EX2312012)"]):::core
+    Proband(["🧬 <b>Proband Clinical Constellation</b><br/>(PROBAND01)"]):::core
 
     subgraph OncoGroup[" 🎗️ <span style='color:#0f172a'>Oncological Trigger</span>  "]
         RMS(["<b>Rhabdomyosarcoma</b><br/>HP:0002859<br/>Primary Oncologic Event"]):::cancer
