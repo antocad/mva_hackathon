@@ -292,10 +292,10 @@ flowchart TD
 ```
 
 ### 5.1 Molecular Evidence
-1. **Allele 1: `chr15:40209701 T>G` (Exon 14)**
+1. **Mutation 1: `chr15:40209701 T>G` (Exon 14)**
    * **Molecular Impact:** Introduces a premature termination codon (`stop_gained`, `NMD_transcript_variant`).
    * **ClinVar Evidence:** Classified as **Pathogenic / Likely Pathogenic** (`rs1392909108`, `rs2140906206`) for Mosaic Variegated Aneuploidy Syndrome 1.
-2. **Allele 2: `chr15:40220612 T>G` (Exon 20)**
+2. **Mutation 2: `chr15:40220612 T>G` (Exon 20)**
    * **Molecular Impact:** `missense_variant` located within the conserved C-terminal catalytic/kinase domain of BubR1.
    * **Rarity:** Completely absent from gnomAD exomes and genomes (`AF = 0.0`), indicating a private mutation. SIFT predicts a deleterious functional consequence.
 
@@ -314,36 +314,13 @@ flowchart TD
 | **Q2** | **Model Number** | **1** (`antocad3_ensemble_without_alignment`) |
 | **Q3** | **Detailed Method Description** | Two-tier hybrid genomics pipeline: (1) Targeted 7-gene MVA panel (MANE Select) + (2) Global genic sweep (>20k genes). Annotated with Ensembl VEP v110 (gnomAD v4, ClinVar, SIFT/PolyPhen, Phenotypes plugin). Prioritized via rarity (<1%), consequence severity, and disease-weighted HPO matrix (rhabdomyosarcoma, nephrocalcinosis, IUGR, miscarriages). Filtered for GATK PASS, DP $\ge$ 10, alt AD $\ge$ 1. Formed compound-het pairs by gene grouping; calibrated EPCR to $[0.05, 1.0]$. |
 | **Q4** | **Generative AI Disclosure** | Anthropic Claude (Sonnet 3.7) & Google DeepMind Antigravity IDE used for pipeline scripting and documentation. **Zero patient genomic data was shared with cloud LLMs; all data was processed locally.** |
-| **Q5** | **Output Curation** | **100% automated computational output** from deterministic script `step5_build_submission_without_alignment.py`. |
+| **Q5** | **Output Curation** | **100% automated computational output** from deterministic script `track1.py`. |
 | **Q6** | **Manual Review** | None. Output generated deterministically. |
 | **Q7** | **Public Data Used** | gnomAD v4 (exomes & genomes), ClinVar (NCBI), Ensembl Release 110 GTF, MANE Select v1.0, 1000 Genomes, HPO database. |
 | **Q8** | **Proprietary Data** | None. Exclusively open-access databases. |
 | **Q9** | **Compound Het Capability** | **Yes.** Dedicated recessive pairing engine groups heterozygous variants per gene and sums damage scores. |
 | **Q10** | **Secondary Findings** | Automated classification: `primary` for confirmed MVA syndrome genes (*BUB1B*, *MAD1L1*); `secondary` for incidental carrier hits (*FLG*, *SLC34A1*, *GNRHR*, *MUC4*). |
-| **Q11** | **Runtime & Compute Cost** | ~10 minutes total runtime on standard workstation; $0.00 compute cost (local open-source tools). |
+| **Q11** | **Runtime & Compute Cost** | **Runtime:** ~30 minutes total execution time on a standard multi-core workstation using Dockerized Ensembl VEP with local cache. **Cost:** $0.00 (Executed entirely on local open-source tools). *(Note: In reality the `Branch B: Global Scan` in our approach is what takes time ~30 minutes, but also what returns more diverse variants). If the goal is purely to find the `BUB1B	chr15:40209701 T>G	chr15:40220612 T>G`, then our `Branch A: Targeted Panel` would have been enough and takes less than a minute, but it means we inject strong biases in the exploration.*] |
 | **Q12** | **Method Abstract** | MVA is an ultrarare genetic disorder where cells fail to divide chromosomes evenly during mitosis, leading to mosaic aneuploidies, severe developmental delays, and childhood cancer predisposition. We developed an automated computational pipeline combining two complementary strategies: a targeted panel on known MVA genes (MVA1–MVA7) and an unbiased genome-wide genic scan. Variants were annotated with Ensembl VEP, filtered for rarity (gnomAD AF < 1%), and prioritized based on consequence severity and clinical relevance to the child's symptoms (rhabdomyosarcoma, nephrocalcinosis, IUGR, miscarriages). Recessive pairing identified a compound heterozygous mutation in *BUB1B* (MVA1) as the primary causal diagnosis (EPCR = 1.0), comprising a ClinVar-pathogenic nonsense mutation (`chr15:40209701 T>G`, stop-gained) and a novel deleterious missense mutation (`chr15:40220612 T>G`). BubR1 loss directly explains chromosome missegregation, rhabdomyosarcoma, and embryonic lethality. |
 
 ---
-
-## 7. Method Evaluation & Roadmap Matrix
-
-```mermaid
-quadrantChart
-    title Method Evaluation and Roadmap Matrix
-    x-axis Fast Lightweight Compute --> Heavy Compute Multi-Omics
-    y-axis Low Clinical Confidence --> High Clinical Confidence
-    quadrant-1 Future Deep Validation
-    quadrant-2 High-Precision Discovery
-    quadrant-3 Unfiltered Raw Data
-    quadrant-4 Heavy Exploratory Search
-    "BUB1B Hit EPCR 1.0": [0.22, 0.85]
-    "Targeted 7-Gene Panel": [0.15, 0.70]
-    "Global Genic Scan": [0.35, 0.58]
-    "Raw VCF 5M": [0.12, 0.18]
-    "Future CNVkit Profile": [0.72, 0.78]
-    "Future Trio Phasing": [0.82, 0.90]
-```
-
-### 7.1 Limitations & Future Work
-1. **Phasing Confirmation:** Variant pair separation (~11 kb) exceeds short-read spans. Parental sequencing or long-read WGS is recommended for *trans* phase verification.
-2. **Alignment & CNV Submissions:** Implementation of `step5_alignment.sh` (BWA-MEM) + CNVkit to profile chromosome-wide mosaic aneuploidy percentages from read-depth shifts.

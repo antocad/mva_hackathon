@@ -1,0 +1,62 @@
+A couple of things worth folding into your Track 2 writeup now that both positions are exact:
+
+p.Asn1002Lys sits inside the PKc-like kinase domain itself (750–1045), not just near it — SIFT calls it deleterious (0.01) and PolyPhen calls it probably damaging (0.997). That's a substantive finding: this isn't just "some missense variant," it's a predicted-damaging change inside the catalytic domain.
+The two variants land in different structural contexts: the stop-gained (exon 17, aa 737) truncates the protein just before the kinase domain even begins, while the missense (exon 23, aa 1002) sits deep inside it. That's a mechanistically interesting compound-het pattern — one allele likely produces no functional kinase domain at all (truncated before it), the other likely produces a full-length but catalytically impaired kinase domain (damaging substitution within it). Worth stating explicitly, since it strengthens the case that both alleles independently compromise the same functional unit.
+For the ataluren readthrough angle from earlier: since aa 737 sits right before the kinase domain (750–1045), a rescued full-length protein from readthrough would need to correctly build practically the entire kinase domain from that point on — which is a bigger ask than if the truncation were near the very end. Worth flagging as a caveat in the readthrough section of your writeup, not a dealbreaker.
+
+the VEP Codons field confirms it: tTa/tGa, i.e. TTA (Leu) → TGA (stop). So this is specifically a UGA stop codon, not UAA or UAG, and that detail actually matters a lot for your ataluren pitch.
+
+UGA is the "leakiest" of the three stop codons. Termination fidelity across the three follows UAA > UAG > UGA — meaning UGA already has the highest baseline rate of natural, uninduced readthrough, before any drug is involved. That's a genuinely favorable detail for your case: you're not asking ataluren to force open the tightest of the three signals, you're nudging one that's already the most permeable.
+
+What actually gets inserted — not random at all. Readthrough isn't "any amino acid slips in." It happens because a near-cognate tRNA — one that almost matches the stop codon — competes with the release factors. For UGA specifically, this is dominated by tryptophan (Trp), because the tryptophan codon is UGG — identical to UGA except the last letter — so Trp-tRNA mispairs at that one wobble position far more efficiently than any other tRNA. Multiple independent studies (bacterial, yeast, and human systems) converge on the same result: UGA readthrough inserts tryptophan as the dominant outcome, with cysteine and arginine appearing at lower frequency depending on tissue-specific tRNA abundance.
+
+What this means for your specific variant: the original residue was leucine. Readthrough will not restore leucine — it will most likely produce p.Leu737Trp (with a smaller fraction of molecules getting Cys or Arg instead). So the "rescued" protein isn't wild-type at that position — it's a related but genuinely different substitution. And because insertion is probabilistic per translation event, you don't get one clean rescued protein — you get a mixed population, mostly Leu737Trp, with minor Leu737Cys/Leu737Arg species mixed in, on top of whatever fraction still simply terminates.
+
+Does this affect folding — and can you actually check? This is the real open question, and it's answerable with what you already have:
+
+Leucine is small, aliphatic, and packs tightly. Tryptophan is the bulkiest side chain of all 20 amino acids — a large rigid indole ring. Substituting one for the other is a substantial physicochemical change, not a conservative swap.
+Whether that matters depends entirely on the local structural context of residue 737: if it sits in a flexible loop or disordered linker (plausible, since it's right at the boundary just before the folded kinase domain starts at ~750), a bulky substitution is often tolerated. If it sits within a packed secondary-structure element or a buried hydrophobic pocket, Trp could sterically clash and destabilize local folding.
+
+
+
+
+
+
+ABOUT ATALUREN DRUG EFFICIENCY:
+The full causal chain for "ataluren treats this child's BUB1B deficiency" has at least four separate, independently-uncertain steps:
+
+Does the transcript survive long enough to be translated at all? NMD may have already degraded most copies of this mRNA before a ribosome ever reaches the premature stop. If almost nothing survives, there's no substrate for readthrough to act on, regardless of drug efficacy. Your structural analysis says nothing about this.
+Does ataluren actually induce meaningful readthrough at this specific UGA, in this specific sequence context? Readthrough efficiency isn't just "UGA vs UAA vs UAG" — it's strongly modulated by the local sequence, especially the few nucleotides immediately 3′ of the stop codon, and by tissue-specific tRNA pools. This is an empirical, testable-but-unmeasured quantity for this exact site. Your structural analysis says nothing about this either.
+Does the drug even reach the relevant tissue at effective concentration? Ataluren's approval and PK data come from Duchenne muscular dystrophy — skeletal muscle. BUB1B is a ubiquitously expressed mitotic checkpoint gene; the tissues where MVA pathology matters (bone marrow, kidney, proliferating tissue generally) are a different distribution question than muscle. Not necessarily a problem — it's an orally bioavailable systemic drug — but it's untested for this indication and worth flagging as unknown rather than assumed.
+If a full-length protein is produced, does it fold and function? — this is the one question your entire PyMOL/clash/ΔΔG analysis actually addresses. And even within this step, "folds correctly" and "retains kinase/checkpoint function" are two different sub-questions — a Trp-substituted protein could conceivably fold fine but still be catalytically compromised, or vice versa.
+
+Here's a concrete test for each of the four links, ranked from cheapest/computational to most definitive, with the actual papers behind each method.
+
+1. Does the mutant transcript survive NMD at all?
+
+Computational first pass (free, do this today): NMD in mammals is governed by the well-established "50–55 nt rule" — a premature stop is a strong NMD target if it sits more than ~50–55 nucleotides upstream of the last exon-exon junction (Nagy & Maquat, TIBS 1998). Your variant is in exon 17 of 23 — there are six more exons and six more downstream junctions after it, so this is about as strong a computational prediction of "robust NMD substrate" as you can get without wet-lab data. Worth stating this explicitly and citing the rule — it's a real, quantifiable prediction, not a hand-wave.
+
+Direct experimental proof, if you have or can get patient cells (fibroblasts, blood):
+
+Allele-specific RT-qPCR or RNA-seq, using the heterozygous compound-het genotype itself as an internal control — measure the mutant (exon 17 PTC) allele's transcript abundance relative to the missense allele. If NMD is active, the PTC-allele transcript will show substantially reduced abundance.
+Confirm it's actually NMD (not something else) by treating cells ± an NMD inhibitor — cycloheximide (blocks translation, a classic crude NMD block) or a targeted SMG1 kinase inhibitor — and showing the mutant transcript rebounds. This is the standard control in the field precisely because "low mRNA" alone is ambiguous without this comparison.
+2. Does ataluren actually induce readthrough at this UGA, in this sequence context?
+
+This is the one question with a direct experimental precedent you can copy almost exactly. Welch et al., Nature 2007 (the founding PTC124 paper) validated the drug using precisely this design: a luciferase reporter with a premature UGA inserted at codon 190, dosed with PTC124, readthrough measured as restored luminescence. You can build the same assay with your own sequence: clone ~30–60 nt of genomic sequence flanking c.2210 (with the native surrounding context intact, since context is a real modulator of readthrough efficiency) into a dual-reporter minigene, in-frame with a downstream reporter, treat ± ataluren, measure signal restoration.
+
+One important rigor point to build in from the start: a later mechanistic paper, Auld et al., PNAS 2009, showed that PTC124 can artifactually stabilize/inhibit luciferase enzyme activity itself in some assay formats — producing a false "readthrough" signal that isn't real translational readthrough at all. This triggered a real back-and-forth in the field (Peltz et al.'s reply, same PNAS issue). The accepted fix is to avoid luciferase-only readouts and confirm with an orthogonal method — GFP/flow cytometry, or ideally a western blot for the actual full-length BUB1B protein (or a tagged minigene product), which can't be faked by an enzyme-stabilization artifact. Citing this controversy and explicitly designing around it is a strong rigor signal — it shows you know the field's own history of over-claiming.
+
+Computational supplement: the nucleotide immediately 3′ of the stop codon (the "+4 position") is a known modulator of readthrough efficiency independent of which stop codon it is; you can pull this directly from your reference FASTA (you already have the tooling from Track 1) and compare against published context-effect data (see the 3′-context paper I found: PMC9272376) as a cheap prior before running the actual assay.
+
+3. Does the drug reach the relevant tissue?
+
+What's established: Hirawat et al., J Clin Pharmacol 2007 characterized ataluren's oral PK in healthy volunteers — it's orally bioavailable with systemic distribution, not confined to one tissue compartment by mechanism. Beyond DMD (skeletal muscle), it's shown activity in structurally very different tissues in other nonsense-mutation contexts: CF airway/intestinal epithelium (Kerem et al., Lancet 2008; though note Zomer-van Ommen et al. found limited rescue in CF organoids — a useful counter-example showing efficacy is genuinely tissue- and context-dependent, not guaranteed), and retina in Usher syndrome (Goldmann et al., Hum Gene Ther 2011). That spread is a reasonable basis for "systemic reach is plausible," but there is no existing data for bone marrow, kidney, or the specific proliferative tissues relevant to MVA — this is a genuine, stated gap, not something you can wave away by analogy.
+
+How to actually test it without a live patient: bypass whole-body PK entirely by using patient-derived cells directly — skin fibroblasts or an EBV-transformed lymphoblastoid cell line (LCL), both standard, minimally invasive derivations from a blood or skin sample. Treat these in vitro with ataluren at concentrations matching published plasma levels from the PK studies above, and measure BUB1B rescue directly (RT-qPCR/western). This sidesteps the biodistribution question by testing the cell-intrinsic part of the chain in isolation — standard practice in the field before any in vivo extrapolation.
+
+4. Does the rescued protein fold and function?
+
+This is the one your PyMOL/FoldX work already addresses computationally. To make it experimentally real:
+
+Protein-level: cycloheximide-chase western blot on cells expressing the L737W (and, given the Trp/Cys/Arg readthrough mixture, ideally L737C and L737R too) constructs — measures whether the protein is actually stable over time, a direct read on whether that Pro802 clash translates into real degradation.
+Functional-level, tied to the actual disease mechanism: a classic BUBR1/spindle-assembly-checkpoint functional readout — treat cells with a spindle poison (nocodazole) and measure mitotic arrest duration/mitotic index. Functional BUBR1 causes sustained arrest; checkpoint-deficient cells slip through mitosis prematurely. Comparing untreated vs. ataluren-treated patient cells on this assay is the most direct possible test of "did this actually fix the checkpoint," and comparing it further to actual aneuploidy rate by metaphase spread karyotyping or interphase FISH would tie the whole intervention back to the literal defining feature of MVA — mosaic aneuploidy — rather than a proxy.

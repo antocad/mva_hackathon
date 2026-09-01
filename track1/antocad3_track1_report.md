@@ -157,13 +157,17 @@ Automated classification in `finding_type`:
 * **Runtime:** ~30 minutes total execution time on a standard multi-core workstation using Dockerized Ensembl VEP with local cache.
 * **Cost:** $0.00 (Executed entirely on local open-source tools).
 
+> *(Note: In reality the `Branch B: Global Scan` in our approach is what takes time ~25 minutes, but also what returns more diverse variants). If the goal is purely to find the `BUB1B	chr15:40209701 T>G	chr15:40220612 T>G`, then our `Branch A: Targeted Panel` would have been enough and takes less than 5 minutes, but it means we inject strong biases in the exploration.*
+
 ---
 
-> **Abstract:** Mosaic Variegated Aneuploidy (MVA) is an ultrarare genetic disorder where cells fail to divide chromosomes evenly during mitosis, leading to mosaic aneuploidies, severe developmental delays, and early childhood cancer predisposition. Identifying the causal mutation from whole-genome sequencing requires distinguishing rare, recessive pathogenic events from millions of benign background variants.
+### Question 13: Abstract
+> Mosaic Variegated Aneuploidy (MVA) is an ultrarare genetic disorder where cells fail to divide chromosomes evenly during mitosis, leading to mosaic aneuploidies, severe developmental delays, and early childhood cancer predisposition. Identifying the causal mutation from whole-genome sequencing requires distinguishing rare, recessive pathogenic events from millions of benign background variants.
 > 
 > To solve this case, we developed an automated computational pipeline combining two complementary strategies: a targeted panel focusing on known MVA genes (MVA1–MVA7) and an unbiased genome-wide scan across all human genes. Variants from the patient's whole-genome sequencing were functionally annotated using Ensembl VEP, filtered for population rarity (gnomAD allele frequency < 1%), and prioritized based on consequence severity and clinical relevance to the child's symptoms (rhabdomyosarcoma, nephrocalcinosis, severe growth restriction, and parental recurrent miscarriages). To account for recessive inheritance, high-quality heterozygous calls were paired per gene to identify potential compound heterozygous mutations.
 > 
 > Our analysis identified a compound heterozygous mutation in the *BUB1B* gene as the primary causal diagnosis (EPCR = 1.0). The genotype consists of a known ClinVar-pathogenic nonsense mutation (`chr15:40209701 T>G`, causing premature protein truncation) and a novel deleterious missense mutation (`chr15:40220612 T>G`) in the catalytic domain. *BUB1B* encodes BubR1, a master regulator of the spindle assembly checkpoint whose loss directly explains chromosome missegregation, childhood rhabdomyosarcoma, and embryonic lethality.
 > 
-> **Strengths:** Fully automated, fast execution (~30 minutes), combining curated clinical knowledge with genome-wide exploration and explicit compound heterozygous modeling.  
+> **Strengths:** Fully automated, fast execution (~30 minutes), combining curated clinical knowledge with genome-wide exploration and explicit compound heterozygous modeling. 
+>
 > **Limitations & Next Steps:** Short-read sequencing cannot definitively prove that the two mutations sit on opposite parental chromosomes (*trans* phasing) without parental DNA. Future work includes copy-number profiling (CNVkit) to quantify the degree of mosaic aneuploidy directly from alignment data.
