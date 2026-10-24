@@ -258,51 +258,37 @@ Complete predictions table submitted in `antocad3_ensemble_without_alignment.csv
 
 ## 5. Biological Deep Dive: The Causal Candidate (*BUB1B*)
 
-```mermaid
-flowchart TD
-    classDef chromosome fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc,rx:12,ry:12;
-    classDef exonNode fill:#1e293b,stroke:#64748b,stroke-width:1.5px,color:#f8fafc,rx:8,ry:8;
-    classDef var1Node fill:#ffe4e6,stroke:#e11d48,stroke-width:2px,color:#9f1239,rx:12,ry:12;
-    classDef var2Node fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,rx:12,ry:12;
-    classDef outcomeNode fill:#fee2e2,stroke:#b91c1c,stroke-width:3px,color:#7f1d1d,rx:14,ry:14;
+<div align="center" style="background-color: #ffffff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+  <img src="bub1b_variant_locations_confirmed.png" alt="BUB1B Gene & Protein Domain Architecture" width="100%"/>
+  <p style="color: #475569; margin-top: 8px;"><em>Figure 5.1: Structural mapping of the identified compound heterozygous variants along the 23-exon BUB1B gene model and the 1,050-amino-acid BubR1 protein domain architecture (Mad3_BUB1_I, PTZ00121, and PKc-like kinase domains).</em></p>
+</div>
 
-    subgraph GeneTrack[" 🧬 Chromosome 15q15.1: BUB1B Gene Structure (~60 kb) "]
-        direction LR
-        Exon1(["<b>Exon 1</b><br/>Start"]):::exonNode --- SpanA["..."] --- Exon14(["<b>Exon 14</b><br/>Pos 40,209,701"]):::var1Node --- SpanB["... (~11 kb Intronic Span) ..."] --- Exon20(["<b>Exon 20</b><br/>Pos 40,220,612"]):::var2Node --- SpanC["..."] --- Exon23(["<b>Exon 23</b><br/>Stop"]):::exonNode
-    end
+### 5.1 Molecular Evidence & Distinct Structural Contexts
+Our automated pipeline identified two independent non-reference alleles in *BUB1B* establishing a mechanistically compelling compound heterozygous genotype:
 
-    subgraph Mutations[" 🔬 <span style='color:#0f172a'>Compound Heterozygous Mutations Detected</span> "]
-        direction TB
-        Hit1(["<b>Allele 1: chr15:40209701 T>G (c.1833T>G)</b><br/>• Stop-Gained / Premature Truncation<br/>• gnomAD AF: 7.87 × 10⁻⁵ (Ultra-rare)<br/>• ClinVar: <b>PATHOGENIC</b> (MVA1 & Rhabdomyosarcoma)<br/>• Triggers Nonsense-Mediated mRNA Decay (NMD)"]):::var1Node
-        Hit2(["<b>Allele 2: chr15:40220612 T>G (Missense)</b><br/>• Non-synonymous substitution in Catalytic Domain<br/>• gnomAD AF: 0.00e+00 (Novel Private Variant)<br/>• SIFT: <b>Deleterious</b> / Damaging Fold"]):::var2Node
-    end
+1. **Allele 1: `chr15:40209701 T>G` (c.2210T>G, p.Leu737*) — Exon 17 Truncation**
+   * **Molecular Impact:** Introduces a premature termination codon (`stop_gained`, `NMD_transcript_variant`) from codon `TTA` $\to$ `TGA` (UGA stop).
+   * **Structural Context:** Residue 737 is located in the pre-kinase linker region just before the C-terminal catalytic kinase domain begins (residues 750–1045). Truncation at this position removes the entire catalytic kinase domain and C-terminal spindle checkpoint regulatory elements.
+   * **NMD & Functional Outcome:** Located in exon 17 of 23 (>50 nt upstream of the terminal exon-exon junction), this allele represents a canonical nonsense-mediated mRNA decay (NMD) target. Any escaped transcript yields a truncated protein completely lacking kinase activity.
+   * **ClinVar Evidence:** Classified as **Pathogenic / Likely Pathogenic** (`rs1392909108`, `rs2140906206`) for Mosaic Variegated Aneuploidy Syndrome 1 and rhabdomyosarcoma predisposition (`gnomAD AF = 3.29e-5`).
 
-    subgraph ClinicalImpact[" 💥 <span style='color:#0f172a'>Pathophysiological Consequence</span> "]
-        Outcome(["<b>Complete Biallelic BubR1 Checkpoint Inactivation</b><br/>Failure of Mitotic Spindle Assembly Checkpoint (SAC)<br/>➔ Mosaic Chromosome Aneuploidy + Embryonal Rhabdomyosarcoma + Recurrent Miscarriages"]):::outcomeNode
-    end
+2. **Allele 2: `chr15:40220612 T>G` (c.3006T>G, p.Asn1002Lys) — Exon 23 Catalytic Kinase Core**
+   * **Molecular Impact:** Non-synonymous amino acid substitution replacing an uncharged polar asparagine with a positively charged, bulky lysine (`missense_variant`).
+   * **Structural Context:** Unlike superficial surface variants, **p.Asn1002Lys sits deep inside the PKc-like catalytic kinase domain itself (residues 750–1045)**, rather than in peripheral or unstructured regions.
+   * **In Silico Pathogenicity:** Both orthogonal functional predictors confirm severe disruption: **SIFT classifies the mutation as Deleterious (score: 0.01)** and **PolyPhen-2 classifies it as Probably Damaging (score: 0.997)**.
+   * **Rarity:** Completely absent from gnomAD exomes and genomes (`AF = 0.00e+00`), establishing it as an ultra-rare private mutation.
 
-    Exon14 ==> Hit1
-    Exon20 ==> Hit2
-    Hit1 ==> Outcome
-    Hit2 ==> Outcome
+### 5.2 Mechanistic Compound Heterozygosity: Dual Compromise of the Same Functional Unit
+The two variants land in fundamentally different structural contexts that converge on the destruction of BubR1 kinase functionality:
+* **Allele 1 (Truncating Knockout):** Truncates translation at aa 737 immediately prior to the kinase domain, ensuring that this allele produces **no functional kinase domain whatsoever**.
+* **Allele 2 (Catalytic Impairment):** Produces a full-length protein that successfully incorporates into the spindle assembly machinery, but carries a **predicted-damaging charge reversal directly inside the catalytic core (aa 1002)**, compromising catalytic competence and kinetochore phosphorylation.
 
-    style GeneTrack fill:#090d16,stroke:#38bdf8,stroke-width:1.5px,rx:14,ry:14
-    style Mutations fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,stroke-dasharray: 4 4,rx:14,ry:14
-    style ClinicalImpact fill:#fff1f2,stroke:#f43f5e,stroke-width:2px,rx:16,ry:16
-```
+This compound heterozygous configuration satisfies the classic autosomal recessive disease model for MVA1: neither allele can provide an intact, catalytically competent BubR1 kinase.
 
-### 5.1 Molecular Evidence
-1. **Mutation 1: `chr15:40209701 T>G` (Exon 14)**
-   * **Molecular Impact:** Introduces a premature termination codon (`stop_gained`, `NMD_transcript_variant`).
-   * **ClinVar Evidence:** Classified as **Pathogenic / Likely Pathogenic** (`rs1392909108`, `rs2140906206`) for Mosaic Variegated Aneuploidy Syndrome 1.
-2. **Mutation 2: `chr15:40220612 T>G` (Exon 20)**
-   * **Molecular Impact:** `missense_variant` located within the conserved C-terminal catalytic/kinase domain of BubR1.
-   * **Rarity:** Completely absent from gnomAD exomes and genomes (`AF = 0.0`), indicating a private mutation. SIFT predicts a deleterious functional consequence.
-
-### 5.2 Pathophysiological Concordance
-* **Mitotic Spindle Assembly Checkpoint (SAC) Collapse:** BubR1 inhibits the Anaphase-Promoting Complex/Cyclosome (APC/C) until all kinetochores achieve bipolar spindle tension. Biallelic disruption abrogates metaphase arrest, producing high-frequency mosaic aneuploidies.
-* **Oncogenesis:** Checkpoint-deficient cells tolerate severe chromosomal instability, directly precipitating embryonal **rhabdomyosarcoma** and Wilms tumors in infancy.
-* **Reproductive Lethality:** Complete SAC deficiency leads to early embryonic arrest, accounting for parental recurrent miscarriages.
+### 5.3 Pathophysiological Concordance with Proband Phenotype
+* **Mitotic Spindle Assembly Checkpoint (SAC) Collapse:** BubR1 acts as an essential sensor and inhibitor within the Mitotic Checkpoint Complex (MCC), inhibiting the Anaphase-Promoting Complex/Cyclosome (APC/C) until all kinetochores achieve tension-balanced bipolar spindle attachment. Complete biallelic kinase disruption abrogates metaphase arrest, leading to premature sister chromatid separation and widespread mosaic aneuploidies.
+* **Pediatric Oncogenesis (Embryonal Rhabdomyosarcoma):** Chromosomal instability (CIN) induced by BubR1 deficiency is heavily oncogenic in early embryogenesis, directly explaining the patient's primary cancer presentation (embryonal rhabdomyosarcoma) as documented in clinical MVA1 cohorts.
+* **Reproductive Lethality & Developmental Deficits:** Severe SAC insufficiency causes catastrophic mitotic failure during early cleavage, directly correlating with the parental history of recurrent miscarriages and the proband's intrauterine growth restriction (IUGR).
 
 ---
 
@@ -321,6 +307,6 @@ flowchart TD
 | **Q9** | **Compound Het Capability** | **Yes.** Dedicated recessive pairing engine groups heterozygous variants per gene and sums damage scores. |
 | **Q10** | **Secondary Findings** | Automated classification: `primary` for confirmed MVA syndrome genes (*BUB1B*, *MAD1L1*); `secondary` for incidental carrier hits (*FLG*, *SLC34A1*, *GNRHR*, *MUC4*). |
 | **Q11** | **Runtime & Compute Cost** | **Runtime:** ~30 minutes total execution time on a standard multi-core workstation using Dockerized Ensembl VEP with local cache. **Cost:** $0.00 (Executed entirely on local open-source tools). *(Note: In reality the `Branch B: Global Scan` in our approach is what takes time ~30 minutes, but also what returns more diverse variants). If the goal is purely to find the `BUB1B	chr15:40209701 T>G	chr15:40220612 T>G`, then our `Branch A: Targeted Panel` would have been enough and takes less than a minute, but it means we inject strong biases in the exploration.*] |
-| **Q12** | **Method Abstract** | MVA is an ultrarare genetic disorder where cells fail to divide chromosomes evenly during mitosis, leading to mosaic aneuploidies, severe developmental delays, and childhood cancer predisposition. We developed an automated computational pipeline combining two complementary strategies: a targeted panel on known MVA genes (MVA1–MVA7) and an unbiased genome-wide genic scan. Variants were annotated with Ensembl VEP, filtered for rarity (gnomAD AF < 1%), and prioritized based on consequence severity and clinical relevance to the child's symptoms (rhabdomyosarcoma, nephrocalcinosis, IUGR, miscarriages). Recessive pairing identified a compound heterozygous mutation in *BUB1B* (MVA1) as the primary causal diagnosis (EPCR = 1.0), comprising a ClinVar-pathogenic nonsense mutation (`chr15:40209701 T>G`, stop-gained) and a novel deleterious missense mutation (`chr15:40220612 T>G`). BubR1 loss directly explains chromosome missegregation, rhabdomyosarcoma, and embryonic lethality. |
+| **Q12** | **Method Abstract** | MVA is an ultrarare genetic disorder where cells fail to divide chromosomes evenly during mitosis, leading to mosaic aneuploidies, severe developmental delays, and childhood cancer predisposition. We developed an automated computational pipeline combining two complementary strategies: a targeted panel on known MVA genes (MVA1–MVA7) and an unbiased genome-wide genic scan. Variants were annotated with Ensembl VEP, filtered for rarity (gnomAD AF < 1%), and prioritized based on consequence severity and clinical relevance to the child's symptoms (rhabdomyosarcoma, nephrocalcinosis, IUGR, miscarriages). Recessive pairing identified a compound heterozygous mutation in *BUB1B* (MVA1) as the primary causal diagnosis (EPCR = 1.0), comprising a ClinVar-pathogenic nonsense mutation (`chr15:40209701 T>G`, p.Leu737*, stop-gained in exon 17 truncating pre-kinase) and a novel deleterious missense mutation (`chr15:40220612 T>G`, p.Asn1002Lys in exon 23 inside the catalytic kinase domain; SIFT 0.01, PolyPhen 0.997). BubR1 kinase loss directly explains chromosome missegregation, rhabdomyosarcoma, and embryonic lethality. |
 
 ---
