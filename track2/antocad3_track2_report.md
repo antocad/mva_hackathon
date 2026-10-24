@@ -92,7 +92,7 @@ A negative ΔΔG here means "no energetic penalty detected in this protocol". It
 
 This is a **structural plausibility result**, not proof that the rescued protein folds correctly in cells, retains function, or restores the spindle assembly checkpoint. Rosetta energy scores are model-dependent and should not be interpreted as direct experimental measurements of free energy [14].
 
-![Image description](pymol.png)
+![Pymol images of the structures obtained after inserting the mutations and relaxing the side-chains](pymol.png)
 
 ##### 2.3 Why NMD matters: the 50–55 nucleotide rule and the case for an NMD inhibitor
 
